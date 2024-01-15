@@ -1,7 +1,7 @@
 NAME		:=	libprintf.a
 
 # Variables
-INCLUDE_DIR	:=	include
+lNCLUDE_DIR	:=	include
 SOURCE_DIR	:=	src
 OBJ_DIR		:=	objects
 

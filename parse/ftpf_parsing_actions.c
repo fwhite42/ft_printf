@@ -6,21 +6,21 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 21:25:04 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/14 21:29:21 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:41:05 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include"ft_printf_structures.h"
 #include"ft_printf_read_write_utils.h"
-
+//==============================================================================
+//==============================================================================
 int	ftpf_parse_flags(t_ftpf_flag *dst, char **src)
 {
-	int i;
-	char flag;
+	int		i;
+	char	flag;
 
 	i = 0;
 	ftpf_read_one(src, &flag);
-	while(ftpf_is_flag(flag))
+	while (ftpf_is_flag(flag))
 	{
 		if ((flag) == '-')
 			(dst->flag).left_justify = 1;
@@ -35,12 +35,14 @@ int	ftpf_parse_flags(t_ftpf_flag *dst, char **src)
 	}
 	return (i);
 }
-
+//==============================================================================
+//==============================================================================
 int	ftpf_parse_field_width(t_ftpf_fmt *dst, char *src)
 {
 	return (ftpf_read_number_base("0123456789", &(dst->field_width), src));
 }
-
+//==============================================================================
+//==============================================================================
 int	ftpf_parse_precision(t_ftpf_fmt *dst, char *src)
 {
 	if (*src == '.')

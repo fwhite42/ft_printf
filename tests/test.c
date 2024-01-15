@@ -49,6 +49,26 @@ int test_signed_integer(printf_like print, printf_like print2, int value)
 	print("[Testing %%x with d = %i]\n", value);
 	just_printed = print("%x\n", value);
 	print("[printed %i bytes]\n\n", just_printed - 1);
+	//%+x
+	print("[Testing %%+x with d = %i]\n", value);
+	just_printed = print("%+x\n", value);
+	print("[printed %i bytes]\n\n", just_printed - 1);
+	//%20.30x
+	print("[Testing %%20.30x with d = %i]\n", value);
+	just_printed = print("%20.30x\n", value);
+	print("[printed %i bytes]\n\n", just_printed - 1);
+	//%31.30x
+	print("[Testing %%31.30x with d = %i]\n", value);
+	just_printed = print("%31.30x\n", value);
+	print("[printed %i bytes]\n\n", just_printed - 1);
+	//%#31.30x
+	print("[Testing %%#31.30x with d = %i]\n", value);
+	just_printed = print("%#31.30x\n", value);
+	print("[printed %i bytes]\n\n", just_printed - 1);
+	//%#32.30x
+	print("[Testing %%#32.30x with d = %i]\n", value);
+	just_printed = print("%#32.30x\n", value);
+	print("[printed %i bytes]\n\n", just_printed - 1);
 	//%X
 	print("[Testing %%X with d = %i]\n", value);
 	just_printed = print("%X\n", value);
@@ -65,6 +85,8 @@ int test_signed_integer(printf_like print, printf_like print2, int value)
 	print("[Testing %%#X with d = %i]\n", value);
 	just_printed = print("%#X\n", value);
 	print("[printed %i bytes]\n\n", just_printed - 1);
+	
+	return (just_printed);
 }
 
 int main(void)

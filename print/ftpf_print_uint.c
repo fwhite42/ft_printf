@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_constants.h                              :+:      :+:    :+:   */
+/*   ftpf_print_uint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 18:09:12 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/15 18:00:18 by fwhite42         ###   ########.fr       */
+/*   Created: 2024/01/15 19:18:37 by fwhite42          #+#    #+#             */
+/*   Updated: 2024/01/15 19:19:10 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_CONSTANTS_H
-# define FT_PRINTF_CONSTANTS_H
+void	ftpf_print_uint(t_ftpf_fmt *fmt, va_list args, int *counter, char *base)
+{
+	int nbr;
+	int	bytes_printed;
 
-# define FLAGS "#0 -+"
-# define CONVERSION_SPECIFIERS "cspdiuxX%"
-# define PRECISION_CHARACTER '.'
-# define ESCAPE_CHARACTER '%'
-# define HEX_BASE_LC "0123456789abcdef"
-# define HEX_BASE_UC "0123456789ABCDEF"
-
-#endif
+	nbr = va_arg(unsigned int, args);
+	bytes_printed = ftpf_print_nbr_base(nbr, base);
+	*counter += bytes_printed;
+}
