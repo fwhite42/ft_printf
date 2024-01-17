@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:09:12 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/15 18:00:18 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/15 22:06:20 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # define ESCAPE_CHARACTER '%'
 # define HEX_BASE_LC "0123456789abcdef"
 # define HEX_BASE_UC "0123456789ABCDEF"
+# define FT_PRINTF_TARGET_FD 1
 
 #endif

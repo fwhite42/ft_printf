@@ -1,16 +1,19 @@
-NAME		:=	libprintf.a
+NAME			:=	libprintf.a
 
 # Variables
-lNCLUDE_DIR	:=	include
-SOURCE_DIR	:=	src
-OBJ_DIR		:=	objects
+INCLUDE_DIRECTORY	:=	include
+OBJECT_DIRECTORY	:=	objects
+SOURCE_DIRECTORIES	:=	main parse print utils 
 
-COMPILE_FLAGS	:=	-Wall -Werror -Wextra
-COMPILE		:=	cc -Iinclude
-WITHOUT_RELINK	:=	-c
+COMPILE_FLAGS		:=	-Wall -Werror -Wextra
+COMPILE			:=	cc
+WITHOUT_LINKING		:=	-c
 
+$(OBJECT_DIRECTORY):
+	mkdir objets
 # Rules
 $(NAME) :
+
 
 all	:
 
