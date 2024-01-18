@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:09:43 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/14 22:10:44 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/17 23:59:26 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 typedef struct s_ftpf_fmt
 {
 	t_ftpf_flag	flag;
-	int		field_width;
-	int		precision;
+	int			field_width;
+	int			precision;
 	char		conversion;
 }	t_ftpf_fmt;
 
 typedef struct s_ftpf_flag
 {
-	int left_justify;
-	int force_sign;
-	int space_b4_int;
-	int zero_pad;
-	int alternate_form;
+	int	left_justify;
+	int	force_sign;
+	int	space_b4_int;
+	int	zero_pad;
+	int	alternate_form;
 }	t_ftpf_flag;
 
 #endif

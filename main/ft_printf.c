@@ -6,16 +6,16 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:48:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/15 00:24:59 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/18 02:07:52 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<printf.h>
+#include<ft_printf.h>
 
 int	ft_printf(char *src, ...)
 {
 	t_ftpf_fmt	format;
-	int		bytes_written;
+	int			bytes_written;
 	va_list		args;
 
 	va_start(src, args);
@@ -30,9 +30,10 @@ int	ft_printf(char *src, ...)
 		else
 		{
 			if (!ftpf_write_one(&bytes_written, current))
-				return (-1)
-			ftpf_read_one(&src)
+				return (-1);
+			ftpf_read_one(&src);
 		}
 	}
+	va_end(args);
 	return (bytes_written);
 }

@@ -6,24 +6,24 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:15:46 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/15 21:42:14 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/18 00:25:12 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 size_t	ftpf_write_one(int *counter, char c)
 {
-	size_t success;
+	size_t	success;
 
 	success = write(1, &c, 1);
 	if (s > 0)
 		*counter += 1;
-	return success;
+	return (success);
 }
 
 size_t	ftpf_write_many(int *counter, char c, size_t reps)
 {
 	int	success;
-	
+
 	success = 1;
 	while (resp-- && success)
 		success = ftpf_write_one(counter, c);
@@ -31,9 +31,9 @@ size_t	ftpf_write_many(int *counter, char c, size_t reps)
 
 size_t	ftpf_write_string(int *counter, char *c)
 {
-	size_t success;
-	size_t bytes_written;
-	
+	size_t	success;
+	size_t	bytes_written;
+
 	while (*c)
 	{
 		success = ftpf_write_one(counter, *c);
@@ -42,7 +42,7 @@ size_t	ftpf_write_string(int *counter, char *c)
 		bytes_written += success;
 		c++;
 	}
-	return (bytes_written)
+	return (bytes_written);
 }
 
 void	ftpf_read_one(char **str, char *slot)
