@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_print_c.c                                     :+:      :+:    :+:   */
+/*   ftpf_print_s.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 10:51:13 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/19 11:08:32 by fwhite42         ###   ########.fr       */
+/*   Created: 2024/01/19 15:56:30 by fwhite42          #+#    #+#             */
+/*   Updated: 2024/01/19 16:38:16 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_parsers.h"
-
-void	ftpf_print_c(t_ftpf_fmt *fmt, va_list args, int *counter)
+static inline int	_precompute_bytes_to_be_written(char *str)
 {
-	char		data;
+	int	i;
 
-	if (fmt->field_width && !(fmt->flag).left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width - 1);
-	data = va_arg(args, int);
-	ftpf_write_one(counter, data);
-	if (fmt->field_width && (fmt->flag).left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width - 1);
+	i = 0;
+	while (*(str++))
+		i++;
+	return (i);
+}
+
+void	ftpf_print_s(t_ftpf_fmt *fmt, va_list args, int *counter)
+{
+	char	*str;
+	int		bytes_to_be_written;
+
+	str = va_list(args, char *);
+	if (fmt->precision < bytes_to_be_written)
+		bytes_to_be_written = fmt->precision;
+	ftpf_write_string(str, bytes_to_be_writtten);
 }

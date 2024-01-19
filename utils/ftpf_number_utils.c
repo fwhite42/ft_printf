@@ -6,37 +6,49 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:51:55 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/15 17:59:40 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:53:52 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf_utils.h"
 
-size_t	ftpf_write_number_base(char *base, unsigned int nbr, int *counter)
+static int	_ftpf_write_number_base(char *b, size_t bl, unsigned int n, int *i)
 {
 	unsigned char	digit;
-	size_t			success;
-	int				counter_initial_value;
+	int				t;
+	int				success;
 
-	digit = nbr % baselen;
-	counter_initial_value = *counter;
-	if (digit != nbr)
-		ftpf_write_number_base(base, nbr / baselen, counter);
-	success = ftpf_write_one(counter, base[digit]);
-	if (success < -1)
+	digit = n % bl;
+	t = *i;
+	if (digit != n)
+		_ftpf_write_number_base(b, bl, n / bl, i);
+	success = ftpf_write_one(i, b[digit]);
+	if (success < 0)
 		return (success);
-	return (*counter - (size_t) counter_initial_value);
+	return (*i - t);
 }
 
-void	ftpf_read_number(char **nbr)
+int	ftpf_write_number_base(char *base, unsigned int nbr, int *counter)
 {
-	unsigned int	res;
+	int				baselen;
 
+	baselen = 0;
+	while (base[baselen])
+		baselen++;
+	return (_ftpf_write_number_base(base, baselen, nbr, counter));
+}
+
+int	ftpf_read_number(char **nbr)
+{
+	int	res;
+
+	if (nbr == NULL || *nbr == NULL)
+		return (-1);
 	res = 0;
 	while (ftpf_is_digit((**nbr)))
 	{
 		res *= 10;
-		res += (unsigned int)(**nbr - '0');
+		res += (**nbr - '0');
 		(*nbr)++;
 	}
 	return (res);

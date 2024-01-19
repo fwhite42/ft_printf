@@ -6,34 +6,38 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:15:46 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/18 00:25:12 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:58:14 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t	ftpf_write_one(int *counter, char c)
+#include"ft_printf_utils.h"
+
+int	ftpf_write_one(int *counter, char c)
 {
-	size_t	success;
+	int	success;
 
 	success = write(1, &c, 1);
-	if (s > 0)
+	if (success > 0)
 		*counter += 1;
 	return (success);
 }
 
-size_t	ftpf_write_many(int *counter, char c, size_t reps)
+int	ftpf_write_many(int *counter, char c, int reps)
 {
 	int	success;
 
 	success = 1;
-	while (resp-- && success)
+	while (reps-- && success)
 		success = ftpf_write_one(counter, c);
+	return (reps);
 }
 
-size_t	ftpf_write_string(int *counter, char *c)
+int	ftpf_write_string(int *counter, char *c)
 {
-	size_t	success;
-	size_t	bytes_written;
+	int	success;
+	int	bytes_written;
 
+	bytes_written = 0;
 	while (*c)
 	{
 		success = ftpf_write_one(counter, *c);
@@ -45,13 +49,21 @@ size_t	ftpf_write_string(int *counter, char *c)
 	return (bytes_written);
 }
 
-void	ftpf_read_one(char **str, char *slot)
+bool	ftpf_read_one(char *destination, char **source)
 {
-	*slot = **str;
-	(*str)++;
+	if (destination == NULL || source == NULL || *source == NULL)
+		return (false);
+	*destination = **source;
+	(*source)++;
+	return (true);
 }
 
-void	ftpf_consume_string(char **str, int bytes_to_consume)
+bool	ftpf_read_many(char *destination, char **source, int bytes_to_consume)
 {
-	*str += bytes_to_consume;
+	while (bytes_to_consume--)
+	{
+		if (!ftpf_read_one(destination, source))
+			return (false);
+	}
+	return (true);
 }

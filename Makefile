@@ -6,7 +6,7 @@
 #    By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 02:50:40 by fwhite42          #+#    #+#              #
-#    Updated: 2024/01/18 03:54:43 by fwhite42         ###   ########.fr        #
+#    Updated: 2024/01/19 10:35:06 by fwhite42         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ NAME			:=	libprintf.a
 # Directories
 
 INCLUDE_DIR			:=	include main
+OBJ_DIR				:=	objects
+SRC_DIR				:=	main parse print utils
 
 ###############################################################################
 # Files To Compile
@@ -27,8 +29,8 @@ INCLUDE_DIR			:=	include main
 MAIN_FILES			:=\
 					  main/ft_printf.c
 PARSE_FILES			:=\
-					  parse/ftpf_parsing_action.c	\
-					  parse/ftpf_parse_action.c
+					  parse/ftpf_parsing_actions.c	\
+					  parse/ftpf_parse.c
 PRINT_FILES			:=\
 					  print/ftpf_print_c.c			\
 					  print/ftpf_print_d.c			\
@@ -47,6 +49,11 @@ ALL_FILES			:=\
 					  $(PARSE_FILES)				\
 					  $(PRINT_FILES)				\
 					  $(UTIL_FILES)
+
+###############################################################################
+# Archives to be created
+
+ARCHIVE_LIST	:=	main.a print.a parse.a utils.a
 
 ###############################################################################
 # Objects To Archive
@@ -90,17 +97,35 @@ $(UTIL_OBJECTS) 	: objects/%.o:utils/%.c objects
 	@$(COMPILE) $< -o $@
 
 ###############################################################################
-# Archive Rules
+# Archive Options`
 
 ARCHIVE_CMD			:= ar
-ARCHIVE_FLAGS		:= -rc
+ARCHIVE_FLAGS		:= -rcs
 ARCHIVE				:= $(ARCHIVE_CMD) $(ARCHIVE_FLAGS)
 
-###############################################################################
-# Mandatory Rules
+define make_archive
+	mkdir -p lib
+	$(ARCHIVE) $1 $2
+	$(MAKE) clean
+endef
 
-$(NAME) :
-	$(ARCHIVE) $@ $(ALL_OBJECTS)
+###############################################################################
+# Rules (user defined)
+
+./lib/main.a	: $(MAIN_OBJECTS)
+	$(call make_archive,$@,$^)
+./lib/parse.a	: $(PARSE_OBJECTS)
+	$(call make_archive,$@,$^)
+./lib/print.a	: $(PRINT_OBJECTS)
+	$(call make_archive,$@,$^)
+./lib/utils.a	: $(UTIL_OBJECTS)
+	$(call make_archive,$@,$^)
+
+###############################################################################
+# Rules (mandatory)
+
+$(NAME) : $(ARCHIVE_LIST:%=./lib/%)
+	$(ARCHIVE) $@ $^
 
 all		:
 	$(MAKE) $(NAME)
@@ -108,18 +133,10 @@ all		:
 clean	:
 	rm -r objects
 
-fclean	: clean
-	rm $(NAME)
+fclean	:
+	rm -f *.a
+	rm -rf lib
 
 re		: fclean $(NAME)
 
-# Extra Rules
-#
-utils.a: $(UTIL_OBJECTS)
-	$(ARCHIVE) $@ $<
-	$(MAKE) clean
-parse.a: $(PARSE_OBJECTS)
-print.a: $(PRINT_OBJECTS)
-
 .PHONY	: all clean fclean $(NAME) re
-
