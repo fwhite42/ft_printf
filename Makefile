@@ -5,8 +5,8 @@
 #                                                         (@)-=-(@)            #
 #    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
 #                                                       _ /'-----'\_           #
-#    Created: 2024/01/20 15:23:46 by fwhite42          \\ \\     // //         #
-#    Updated: 2024/01/20 15:42:01 by fcandia          ###   ########.fr        #
+#    Created: 2024/01/20 16:16:39 by fwhite42          \\ \\     // //         #
+#    Updated: 2024/01/20 16:53:00 by fcandia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ PARSE_FILES			:=\
 					  parse/ftpf_parse.c
 PRINT_FILES			:=\
 					  print/ftpf_print_c.c			\
-					  print/ftpf_print_d.c			\
 					  print/ftpf_print_i.c			\
 					  print/ftpf_print_p.c			\
 					  print/ftpf_print_s.c			\
@@ -85,7 +84,7 @@ COMPILE				:=\
 # Compilation Rules
 
 objects				:
-	mkdir objects
+	mkdir -p objects
 
 $(MAIN_OBJECTS)		: objects/%.o:main/%.c objects
 	@$(COMPILE) $< -o $@
@@ -111,7 +110,6 @@ endef
 
 ###############################################################################
 # Rules (user defined)
-
 ./lib/main.a	: $(MAIN_OBJECTS)
 	$(call make_archive,$@,$^)
 ./lib/parse.a	: $(PARSE_OBJECTS)
@@ -124,7 +122,7 @@ endef
 ###############################################################################
 # Rules (mandatory)
 
-$(NAME) : $(ARCHIVE_LIST:%=./lib/%)
+$(NAME) :  $(ALL_OBJECTS) 
 	$(ARCHIVE) $@ $^
 
 all		:
