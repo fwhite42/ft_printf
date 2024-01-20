@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:24:07 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/19 14:43:51 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:30:36 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include"ft_printf_constants.h"
 # include"ft_printf_utils.h"
 # include<stdarg.h>
+# include<stdint.h>
 
 typedef void(	*t_ftpf_printer)(t_ftpf_fmt fmt, va_list arg, int *counter);
 t_ftpf_printer	ftpf_load_printer(char conversion_specifier);
