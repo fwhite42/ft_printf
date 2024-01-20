@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                             4 2              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:48:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/18 02:07:52 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:33:05 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<ft_printf.h>
+#include"ft_printf.h"
 
 int	ft_printf(char *src, ...)
 {
@@ -18,7 +18,7 @@ int	ft_printf(char *src, ...)
 	int			bytes_written;
 	va_list		args;
 
-	va_start(src, args);
+	va_start(args, src);
 	while (*src)
 	{
 		if (ftpf_is_escape_char(*src))

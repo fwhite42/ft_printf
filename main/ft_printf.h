@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                             4 2              */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
+/*   By: fcandia <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 00:25:46 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/18 02:07:54 by fwhite42         ###   ########.fr       */
+/*   Created: 2024/01/20 15:29:38 by fcandia           #+#    #+#             */
+/*   Updated: 2024/01/20 15:32:15 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<ft_printf_constants.h>
-#include<ft_printf_structures.h>
-#include<ft_printf_utils.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include"ft_printf_printers.h"
 
 int	ft_printf(char *source, ...);
+#endif

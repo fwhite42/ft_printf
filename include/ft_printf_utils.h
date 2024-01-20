@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.h                                  :+:      :+:    :+:   */
+/*   ft_printf_utils.h                                       ???              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 00:01:24 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/19 16:38:17 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:01:00 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	ftpf_is_conversion_specifier(char x);
 //=============================================================================
 int		ftpf_write_one(int *counter, char c);
 int		ftpf_write_many(int *counter, char c, int reps);
-int		ftpf_write_string(int *counter, char *str);
+int		ftpf_write_string(int *counter, char *str, int limit);
 bool	ftpf_read_one(char *destination, char **src);
 bool	ftpf_read_many(char *destination, char **src, int reps);
 

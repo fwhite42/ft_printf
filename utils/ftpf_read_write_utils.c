@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_read_write_utils.c                            :+:      :+:    :+:   */
+/*   ftpf_read_write_utils.c                                 ???              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:15:46 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/18 20:58:14 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:02:08 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	ftpf_write_many(int *counter, char c, int reps)
 	return (reps);
 }
 
-int	ftpf_write_string(int *counter, char *c)
+int	ftpf_write_string(int *counter, char *c, int limit)
 {
 	int	success;
 	int	bytes_written;
 
 	bytes_written = 0;
-	while (*c)
+	while (*c && limit--)
 	{
 		success = ftpf_write_one(counter, *c);
 		if (success < 0)

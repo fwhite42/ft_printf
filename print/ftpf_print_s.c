@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_print_s.c                                     :+:      :+:    :+:   */
+/*   ftpf_print_s.c                                          ???              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:56:30 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/20 13:55:25 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:06:44 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<>
+#include"ft_printf_printers.h"
 
 static inline int	_precompute_bytes_to_be_written(char *str)
 {
@@ -24,11 +24,12 @@ static inline int	_precompute_bytes_to_be_written(char *str)
 
 void	ftpf_print_s(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
-	char		*str;
+	char	*str;
 	int		bytes_to_be_written;
 
-	str = va_list(args, char *);
+	str = va_arg(args, char *);
+	bytes_to_be_written = _precompute_bytes_to_be_written(str);
 	if (fmt->precision < bytes_to_be_written)
 		bytes_to_be_written = fmt->precision;
-	ftpf_write_string(str, bytes_to_be_writtten);
+	ftpf_write_string(counter, str, bytes_to_be_written);
 }

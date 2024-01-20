@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/18 02:50:40 by fwhite42          #+#    #+#              #
-#    Updated: 2024/01/19 10:35:06 by fwhite42         ###   ########.fr        #
+#                                                                              #
+#    Makefile                                                4 2               #
+#                                                         (@)-=-(@)            #
+#    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
+#                                                       _ /'-----'\_           #
+#    Created: 2024/01/20 15:23:46 by fwhite42          \\ \\     // //         #
+#    Updated: 2024/01/20 15:42:01 by fcandia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PRINT_FILES			:=\
 					  print/ftpf_print_s.c			\
 					  print/ftpf_print_u.c			\
 					  print/ftpf_print_x_lc.c		\
-					  print/ftpf_print_x_up.c
+					  print/ftpf_print_x_uc.c
 UTIL_FILES			:=\
 					  utils/ftpf_character_utils.c	\
 					  utils/ftpf_number_utils.c		\
