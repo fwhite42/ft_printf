@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ftpf_read_write_utils.c                                 ???              */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 18:15:46 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/20 15:02:08 by fcandia          ###   ########.fr       */
+/*                                                                            */
+/*   ftpf_read_write_utils.c                                 4 2              */
+/*                                                        (@)-=-(@)           */
+/*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
+/*                                                      _ /'-----'\_          */
+/*   Created: 2024/01/22 10:03:39 by fwhite42          \\ \\     // //        */
+/*   Updated: 2024/01/22 11:01:33 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ftpf_write_string(int *counter, char *c, int limit)
 	}
 	return (bytes_written);
 }
+
 
 bool	ftpf_read_one(char *destination, char **source)
 {

@@ -1,14 +1,15 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                                              #
+#                                                         :::      ::::::::    #
 #    Makefile                                                4 2               #
-#                                                         (@)-=-(@)            #
-#    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
-#                                                       _ /'-----'\_           #
-#    Created: 2024/01/20 16:16:39 by fwhite42          \\ \\     // //         #
-#    Updated: 2024/01/20 16:53:00 by fcandia          ###   ########.fr        #
+#                                                     +:+ +:+         +:+      #
+#    By: fcandia <marvin@42lausanne.ch>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/21 17:24:42 by fcandia           #+#    #+#              #
+#    Updated: 2024/01/22 09:49:33 by fcandia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME			:=	libprintf.a
 
@@ -32,6 +33,7 @@ PARSE_FILES			:=\
 					  parse/ftpf_parsing_actions.c	\
 					  parse/ftpf_parse.c
 PRINT_FILES			:=\
+					  print/ftpf_load_printer.c		\
 					  print/ftpf_print_c.c			\
 					  print/ftpf_print_i.c			\
 					  print/ftpf_print_p.c			\
@@ -137,4 +139,8 @@ fclean	:
 
 re		: fclean $(NAME)
 
+# tests
+
+test.exe : $(NAME) tests/test1.c
+	gcc -L. -lprintf -Iinclude -Imain tests/test1.c -o test.exe
 .PHONY	: all clean fclean $(NAME) re

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_number_utils.c                                :+:      :+:    :+:   */
+/*   ftpf_number_utils.c                                     4 2              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:51:55 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/18 20:53:52 by fwhite42         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:29:38 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ftpf_read_number(char **nbr)
 {
 	int	res;
 
-	if (nbr == NULL || *nbr == NULL)
+	if (nbr == NULL || *nbr == NULL || !ftpf_is_digit(**nbr))
 		return (-1);
 	res = 0;
 	while (ftpf_is_digit((**nbr)))

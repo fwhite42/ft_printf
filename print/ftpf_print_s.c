@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_print_s.c                                          ???              */
+/*   ftpf_print_s.c                                          4 2              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:56:30 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/20 15:06:44 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:26:20 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf_printers.h"
+#include<stdio.h>
 
 static inline int	_precompute_bytes_to_be_written(char *str)
 {

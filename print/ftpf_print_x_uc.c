@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/20 15:24:56 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/20 15:27:12 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/21 16:44:37 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline int	_precompute_bytes_to_write(unsigned int nbr)
 	return (i);
 }
 
-void	ftpf_print_x(t_ftpf_fmt *fmt, va_list args, int *counter)
+void	ftpf_print_x_uc(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	unsigned int	nbr;
 	int				bytes_to_write;
