@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_print_p.c                                          ???              */
+/*   ftpf_print_p.c                                          4 2              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:17:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/20 15:05:56 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:19 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf_printers.h"
+#include<stdio.h>
 
 static inline void	_print_pointer(uintptr_t nbr, int *counter)
 {
-	int	slot;
-
-	slot = sizeof(unsigned int) * 8;
-	while ((unsigned int)(nbr >> slot))
-		_print_pointer(nbr >> slot, counter);
-	ftpf_write_number_base(HEX_BASE_LC, nbr, counter);
+	if ((nbr >> 8))
+	{
+		_print_pointer(nbr >> 8, counter);
+		if (nbr % 256 < 16)
+			ftpf_write_one(counter, '0');
+	}
+	ftpf_write_number_base(HEX_BASE_LC, (unsigned int)(nbr % 256), counter);
 }
 
 void	ftpf_print_p(t_ftpf_fmt *fmt, va_list args, int *counter)

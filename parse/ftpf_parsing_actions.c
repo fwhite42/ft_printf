@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:11:18 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/22 15:26:33 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/23 11:52:56 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline void _reset_flag(t_ftpf_fmt *format)
 	format->flag.zero_pad = 0;
 }
 
-int	ftpf_parse_flags(t_ftpf_fmt *format, char **src)
+int	ftpf_parse_flags(t_ftpf_fmt *format, const char **src)
 {
 	int		i;
 	char	flag;
@@ -52,13 +52,13 @@ int	ftpf_parse_flags(t_ftpf_fmt *format, char **src)
 	return (i);
 }
 
-int	ftpf_parse_field_width(t_ftpf_fmt *format, char **src)
+int	ftpf_parse_field_width(t_ftpf_fmt *format, const char **src)
 {
 	format->field_width = ftpf_read_number(src);
 	return (1);
 }
 
-int	ftpf_parse_precision(t_ftpf_fmt *format, char **src)
+int	ftpf_parse_precision(t_ftpf_fmt *format, const char **src)
 {
 	if (**src != '.')
 	{

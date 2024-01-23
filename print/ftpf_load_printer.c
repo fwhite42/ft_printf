@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                                            */
 /*   ftpf_load_printer.c                                     4 2              */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 11:37:51 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/22 13:56:17 by fcandia          ###   ########.fr       */
+/*                                                        (@)-=-(@)           */
+/*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
+/*                                                       _/'-----'\_          */
+/*   Created: 2024/01/19 11:37:51 by fwhite42          \\ \\     // //        */
+/*   Updated: 2024/01/23 18:51:53 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_ftpf_printer	ftpf_load_printer(char conversion_specifier)
 		return (ftpf_print_i);
 	else if (conversion_specifier == 'p')
 		return (ftpf_print_p);
+	else if (conversion_specifier == 'u')
+		return (ftpf_print_u);
 	else if (conversion_specifier == 'x')
 		return (ftpf_print_x);
 	else if (conversion_specifier == 'X')

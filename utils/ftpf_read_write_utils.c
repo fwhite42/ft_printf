@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/22 10:03:39 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/22 11:01:33 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/23 11:52:52 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ftpf_write_string(int *counter, char *c, int limit)
 }
 
 
-bool	ftpf_read_one(char *destination, char **source)
+bool	ftpf_read_one(char *destination, const char **source)
 {
 	if (destination == NULL || source == NULL || *source == NULL)
 		return (false);
@@ -59,11 +59,11 @@ bool	ftpf_read_one(char *destination, char **source)
 	return (true);
 }
 
-bool	ftpf_read_many(char *destination, char **source, int bytes_to_consume)
+bool	ftpf_read_many(char *dst, const char **source, int bytes_to_consume)
 {
 	while (bytes_to_consume--)
 	{
-		if (!ftpf_read_one(destination, source))
+		if (!ftpf_read_one(dst, source))
 			return (false);
 	}
 	return (true);

@@ -1,17 +1,44 @@
 #include"ft_printf.h"
+#include<limits.h>
+#include<stdio.h>
 
 int main()
 {
-	char *str;
 	int	i;
+	int a;
+	int b;
+	
+	i = -24543;
 
-	str = "Hello World";
-	i = 14728;
+	ft_printf("%p\n", (void *)LONG_MIN);
+	printf("%p\n", (void *)LONG_MIN);
 
-	ft_printf("%c\n", str[1]);
-	ft_printf("%s\n", str);
-	ft_printf("%i\n", i);
+	printf("%i\n", -92);
+	ft_printf("%i\n", -92);
+
 	ft_printf("%d\n", i);
+	printf("%d\n", i);
+
 	ft_printf("%x\n", i);
+	printf("%x\n", i);
+
+	ft_printf("%u\n", 1011);
+	printf("%u\n", 1011);
+
+	ft_printf("%#x\n", i);
+	printf("%#x\n", i);
+
+	ft_printf("%X\n", i);
+	printf("%X\n", i);
+
+	ft_printf("%#X\n", i);
+	printf("%#X\n", i);
+
+	ft_printf("%p\n", &i);
+	printf("%p\n", &i);
+
+	a = ft_printf("%p\n", "");
+	b = printf("%p\n", "");
+	ft_printf("%i %i\n", a, b);
 	return (0);
 }

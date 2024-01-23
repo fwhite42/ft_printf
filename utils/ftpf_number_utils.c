@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:51:55 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/22 12:29:38 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/23 11:15:02 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ftpf_write_number_base(char *base, unsigned int nbr, int *counter)
 	return (_ftpf_write_number_base(base, baselen, nbr, counter));
 }
 
-int	ftpf_read_number(char **nbr)
+int	ftpf_read_number(const char **nbr)
 {
 	int	res;
 

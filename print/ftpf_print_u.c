@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftpf_print_u.c                                          ???              */
+/*   ftpf_print_u.c                                          4 2              */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:52:23 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/20 15:12:13 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/23 14:02:22 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline int	_precompute_bytes_to_write(unsigned int nbr)
 	return (i);
 }
 
-void	ftpf_print_d(t_ftpf_fmt *fmt, va_list args, int *counter)
+void	ftpf_print_u(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	unsigned int	nbr;
 	int				bytes_to_write;
