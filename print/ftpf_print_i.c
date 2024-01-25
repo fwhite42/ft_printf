@@ -4,9 +4,9 @@
 /*   ftpf_print_i.c                                          4 2              */
 /*                                                        (@)-=-(@)           */
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
-/*                                                      _ /'-----'\_          */
+/*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 02:03:55 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/25 11:53:39 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,29 @@ static int	_compute_number_of_digits(int nbr)
 static void	_compile_format(t_ftpf_fmt *fmt, int nbr)
 {
 	int	length;
-
+	
+	if (fmt->flag.alternate_form)
+		fmt->flag.alternate_form = 0;
 	length = _compute_number_of_digits(nbr);
 	if (fmt->precision > length)
 	{
 		fmt->precision -= length;
-		length = fmt->precision + length;
+		length += fmt->precision;
 	}
-	else
-		fmt->precision = -1;
-	if (fmt->precision == 0 && nbr == 0 && fmt->field_width > 0)
-		fmt->field_width++;
+	else if (fmt->precision == 0 && nbr == 0)
+	{
+		fmt->flag.alternate_form = 1;
+		length = 0;
+	}
+	else if (fmt->precision != -1)
+		fmt->precision = -2;
 	if (fmt->field_width > length)
 		fmt->field_width -= length;
+	else
+		fmt->field_width = -1;
 	if (nbr < 0 || fmt->flag.force_sign || fmt->flag.space_b4_int)
 		fmt->field_width--;
-		return (0);
-	if (fmt->flag.zero_pad == 1 && fmt->precision == -1 && !fmt->flag.left_justify)
+	if (fmt->flag.zero_pad && fmt->precision == -1  && !fmt->flag.left_justify)
 	{
 		fmt->precision = fmt->field_width;
 		fmt->field_width = -1;
@@ -101,9 +107,8 @@ static void	_write_number(t_ftpf_fmt *fmt, int nbr, int *counter)
 		else
 			ftpf_write_number_base(NBR_BASE, (unsigned int) -nbr, counter);
 	}
-	else
-		printf("\nPRECI %i\n", fmt->precision);
-		//ftpf_write_one(counter, '0');
+	else if (!fmt->flag.alternate_form)
+		ftpf_write_one(counter, '0');
 }
 
 static void	_write_sign(t_ftpf_fmt *fmt, int nbr, int *counter)

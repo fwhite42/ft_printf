@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/24 10:53:23 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 02:03:58 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/25 12:32:01 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static inline void	_ft_vprintf(const char *src, va_list args, int *counter)
 //			printf("precision\t% i\n", format.precision);
 //			printf("field width\t% i\n", format.field_width);
 //			printf("conversion\t %c\n", format.conversion);
-			if (format.conversion != '%')
-			{
+			//if (format.conversion != '%')
+			//{
 				print = ftpf_load_printer(format.conversion);
 				print(&format, args, counter);
 //				printf("\n");
@@ -60,9 +60,9 @@ static inline void	_ft_vprintf(const char *src, va_list args, int *counter)
 //				printf("precision\t% i\n", format.precision);
 //				printf("field width\t% i\n", format.field_width);
 //				printf("conversion\t %c\n", format.conversion);
-			}
-			else
-				ftpf_write_one(counter, format.conversion);
+			//}
+			//else
+				//ftpf_write_one(counter, format.conversion);
 		}
 		else
 		{

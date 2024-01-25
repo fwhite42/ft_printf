@@ -6,7 +6,7 @@
 #    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
 #                                                        _/'-----'\_           #
 #    Created: 2024/01/21 17:24:42 by fwhite42          \\ \\     // //         #
-#    Updated: 2024/01/25 02:04:00 by fwhite42           _)/_\---/_\(_          #
+#    Updated: 2024/01/25 12:32:00 by fcandia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ PARSE_FILES			:=\
 PRINT_FILES			:=\
 					  print/ftpf_load_printer.c		\
 					  print/ftpf_print_c.c			\
+					  print/ftpf_print_escape.c		\
 					  print/ftpf_print_i.c			\
 					  print/ftpf_print_p.c			\
 					  print/ftpf_print_s.c			\

@@ -4,49 +4,98 @@
 /*   ftpf_print_x_uc.c                                       4 2              */
 /*                                                        (@)-=-(@)           */
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
-/*                                                      _ /'-----'\_          */
-/*   Created: 2024/01/20 15:24:56 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/21 16:44:37 by fcandia          ###   ########.fr       */
+/*                                                       _/'-----'\_          */
+/*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
+/*   Updated: 2024/01/25 12:32:05 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf_printers.h"
+#include"ft_printf_constants.h"
+#include<limits.h>
+#include<stdio.h>
 
-static inline int	_precompute_bytes_to_write(unsigned int nbr)
+static int	_compute_number_of_digits(unsigned int nbr);
+
+static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr);
+
+static void	_write_sign(t_ftpf_fmt *fmt, int *counter, unsigned int nbr);
+
+static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter);
+
+void	ftpf_print_x_uc(t_ftpf_fmt *fmt, va_list args, int *counter)
+{
+	int		nbr;
+
+	nbr = va_arg(args, unsigned int);
+	_compile_format(fmt, nbr);
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+	_write_sign(fmt, counter, nbr);
+	if (fmt->precision > 0)
+		ftpf_write_many(counter, '0', fmt->precision);
+	_write_number(fmt, nbr, counter);
+	if (fmt->field_width > 0 && fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+}
+
+static int	_compute_number_of_digits(unsigned int nbr)
 {
 	int	i;
 
-	i = 1;
-	while (nbr != nbr % 16)
+	i = 0;
+	if (!nbr)
+		return (1);
+	while (nbr)
 	{
+		nbr /= 16;
 		i++;
-		nbr = nbr % 16;
 	}
 	return (i);
 }
 
-void	ftpf_print_x_uc(t_ftpf_fmt *fmt, va_list args, int *counter)
+static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr)
 {
-	unsigned int	nbr;
-	int				bytes_to_write;
-
-	nbr = va_arg(args, unsigned int);
-	bytes_to_write = _precompute_bytes_to_write(nbr);
-	if (fmt->precision > bytes_to_write)
-		bytes_to_write = fmt->precision;
-	if ((fmt->flag).alternate_form)
-		bytes_to_write += 2;
-	if (fmt->field_width > bytes_to_write && !(fmt->flag).left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width - bytes_to_write);
-	if (fmt->flag.alternate_form)
-		ftpf_write_string(counter, "0X", 2);
-	if (fmt->precision > bytes_to_write)
+	int	length;
+	
+	if (fmt->flag.force_sign)
+		fmt->flag.force_sign = 0;
+	length = _compute_number_of_digits(nbr);
+	if (fmt->precision > length)
 	{
-		if (fmt->flag.alternate_form)
-			bytes_to_write -= 2;
-		ftpf_write_many(counter, '0', fmt->precision - bytes_to_write);
+		fmt->precision -= length;
+		length += fmt->precision;
 	}
-	ftpf_write_number_base(HEX_BASE_UC, nbr, counter);
-	if (fmt->field_width > bytes_to_write && (fmt->flag).left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width - bytes_to_write);
+	else if (fmt->precision == 0 && nbr == 0)
+	{
+		fmt->flag.force_sign = 1;
+		length = 0;
+	}
+	else if (fmt->precision != -1)
+		fmt->precision = -2;
+	if (fmt->flag.alternate_form && nbr)
+		length += 2;
+	if (fmt->field_width > length)
+		fmt->field_width -= length;
+	else
+		fmt->field_width = -1;
+	if (fmt->flag.zero_pad && fmt->precision == -1  && !fmt->flag.left_justify)
+	{
+		fmt->precision = fmt->field_width;
+		fmt->field_width = -1;
+	}
+}
+
+static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter)
+{
+	if (nbr > 0)
+		ftpf_write_number_base(HEX_BASE_UC, nbr, counter);
+	else if (!fmt->flag.force_sign)
+		ftpf_write_one(counter, '0');
+}
+
+static void	_write_sign(t_ftpf_fmt *fmt, int *counter, unsigned int nbr)
+{
+	if (fmt->flag.alternate_form && nbr != 0)
+		ftpf_write_string(counter, "0X", 2);
 }

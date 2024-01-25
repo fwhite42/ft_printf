@@ -1,0 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   ftpf_print_x_lc.c                                       4 2              */
+/*                                                        (@)-=-(@)           */
+/*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
+/*                                                      _ /'-----'\_          */
+/*   Created: 2024/01/20 15:24:56 by fwhite42          \\ \\     // //        */
+/*   Updated: 2024/01/25 11:53:38 by fcandia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"ft_printf_printers.h"
+
+static inline int	_precompute_bytes_to_write(unsigned int nbr)
+{
+	int	i;
+
+	i = 1;
+	while (nbr != nbr % 16)
+	{
+		i++;
+		nbr = nbr / 16;
+	}
+	return (i);
+}
+
+static void	_compile_format(t_ftpf_fmt *fmt, int nbr)
+{
+	int length;
+
+	length = _precompute_bytes_to_write(nbr);
+	if (fmt->precision > length)
+	{
+		fmt->precision -= length;
+		length += fmt->precision;
+	}
+	else
+		fmt->precision = -1;
+	if (fmt->flag.alternate_form)
+		length += 2;
+	if (fmt->field_width > length)
+		fmt->field_width -= length;
+	else
+		fmt->field_width = -2;
+	if (fmt->flag.zero_pad && fmt->precision == -1  && !fmt->flag.left_justify)
+	{
+		fmt->precision = fmt->field_width;
+		fmt->field_width = -1;
+	}
+}
+
+void	ftpf_print_x(t_ftpf_fmt *fmt, va_list args, int *counter)
+{
+	unsigned int	nbr;
+
+	nbr = va_arg(args, unsigned int);
+	_compile_format(fmt, nbr);
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+	if (fmt->flag.alternate_form)
+		ftpf_write_string(counter, "0x", 2);
+	if (fmt->precision > 0)
+		ftpf_write_many(counter, '0', fmt->precision);
+	ftpf_write_number_base(HEX_BASE_LC, nbr, counter);
+	if (fmt->field_width > 0 && (fmt->flag).left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+}

@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   test_unsigned_integers.c                                4 2              */
+/*                                                        (@)-=-(@)           */
+/*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
+/*                                                      _ /'-----'\_          */
+/*   Created: 2024/01/25 02:27:50 by fwhite42          \\ \\     // //        */
+/*   Updated: 2024/01/25 02:30:04 by fwhite42           _)/_\---/_\(_         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"ft_printf.h"
 #include<limits.h>
 #include<stdio.h>
 
-typedef int (*printf_like)(const char *fmt, ...);
+typedef int	(*t_printf)(const char *fmt, ...);
 
-void test(printf_like my_printf, printf_like orig_printf, char *fmt, unsigned int nbr)
+void	test(t_printf f1, t_printf f2, char *fmt, unsigned int nbr)
 {
-	int a;
-	int b;
+	int	a;
+	int	b;
 
-	a = my_printf(fmt, nbr);
+	a = f1(fmt, nbr);
 	printf("\n");
-	b = orig_printf(fmt, nbr);
+	b = f2(fmt, nbr);
 	printf("\n");
 	printf("a = %i b = %i\n", a, b);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac < 3)
 		return (0);
