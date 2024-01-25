@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/20 15:37:57 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/23 11:12:00 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/24 15:14:26 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,23 @@
 //==============================================================================
 int	ftpf_parse_fmt(t_ftpf_fmt *fmt, const char **src)
 {
-	(*src)++;
-	ftpf_parse_flags(fmt, src);
-	ftpf_parse_field_width(fmt, src);
-	ftpf_parse_precision(fmt, src);
-	ftpf_read_one(&(fmt->conversion), src);
-	while (!ftpf_is_conversion_specifier(fmt->conversion))
+	if (ftpf_is_flag(**src))
+		ftpf_parse_flags(fmt, src);
+	if (ftpf_is_digit(**src) && **src != '0')
+		fmt->field_width = ftpf_read_number(src);
+	if (**src == '.')
+	{
+		(*src)++;
+		if (ftpf_is_digit(**src))
+			fmt->precision = ftpf_read_number(src);
+		else
+			fmt->precision = 0;
+	}
+	if (ftpf_is_conversion_specifier(**src))
 	{
 		ftpf_read_one(&(fmt->conversion), src);
+		return (1);
 	}
-	return (1);
+	else
+		return ftpf_parse_fmt(fmt, src);
 }

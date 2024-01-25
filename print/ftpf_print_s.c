@@ -6,36 +6,55 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:56:30 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/23 11:39:47 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/24 18:32:49 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf_printers.h"
 #include<stdio.h>
 
-static inline int	_precompute_bytes_to_be_written(char *str)
+static inline int	_precompute_length(t_ftpf_fmt *fmt, char *str)
 {
-	int	i;
+	int len;
 
-	i = 0;
-	while (*(str++))
-		i++;
-	return (i);
+	if (str == NULL)
+		len = 6;
+	else
+	{
+		len = 0;
+		while (str[len])
+			len++;
+	}
+	if (fmt->precision > -1 && len > fmt->precision)
+		return fmt->precision;
+	return (len);
+}
+
+static inline void _compile_format(t_ftpf_fmt *fmt, char *str, char *pad)
+{
+	int length;
+	
+	length = _precompute_length(fmt, str);
+	*pad = ' ';
+	if (fmt->flag.left_justify)
+		fmt->flag.zero_pad = 0;
+	fmt->field_width -= length;
+	if (fmt->flag.zero_pad)
+		*pad = '0';
 }
 
 void	ftpf_print_s(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	char	*str;
-	int		bytes_to_be_written;
+	char	pad;
 
 	str = va_arg(args, char *);
+	_compile_format(fmt, str, &pad);
 	if (str == NULL)
-	{
-		ftpf_write_string(counter, "(null)", 6);
-		return ;
-	}
-	bytes_to_be_written = _precompute_bytes_to_be_written(str);
-	if (fmt->precision < bytes_to_be_written)
-		bytes_to_be_written = fmt->precision;
-	ftpf_write_string(counter, str, bytes_to_be_written);
+		str = "(null)";
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
+		ftpf_write_many(counter, pad, fmt->field_width);
+	ftpf_write_string(counter, str, fmt->precision);
+	if (fmt->field_width > 0 && fmt->flag.left_justify)
+		ftpf_write_many(counter, pad, fmt->field_width);
 }

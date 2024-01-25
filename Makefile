@@ -6,7 +6,7 @@
 #    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
 #                                                        _/'-----'\_           #
 #    Created: 2024/01/21 17:24:42 by fwhite42          \\ \\     // //         #
-#    Updated: 2024/01/23 11:52:58 by fwhite42           _)/_\---/_\(_          #
+#    Updated: 2024/01/25 02:04:00 by fwhite42           _)/_\---/_\(_          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,10 +158,10 @@ fclean	:
 
 re		: fclean $(NAME)
 
+bonus: $(NAME)
 ###############################################################################
 # Creates tests files
-
-test.exe : $(NAME) tests/test1.c
-	gcc -L. -lftprintf -Iinclude -Imain tests/test1.c -o test.exe
+% : tests/%.c $(NAME)
+	gcc -L. -lftprintf -Iinclude -Imain tests/$*.c -o test.exe
 
 .PHONY	: clean fclean
