@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 11:53:39 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/25 13:31:32 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	_compute_number_of_digits(int nbr);
 
-static void	_compile_format(t_ftpf_fmt *fmt, int nbr);
+static void	_compile_format(t_ftpf_fmt *fmt, int nbr, int length);
 
 static void	_write_sign(t_ftpf_fmt *fmt, int nbr, int *counter);
 
@@ -26,9 +26,11 @@ static void	_write_number(t_ftpf_fmt *fmt, int nbr, int *counter);
 void	ftpf_print_i(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	int		nbr;
+	int		length;
 
 	nbr = va_arg(args, int);
-	_compile_format(fmt, nbr);
+	length = _compute_number_of_digits(nbr);
+	_compile_format(fmt, nbr, length);
 	if (fmt->field_width > 0 && !fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
 	_write_sign(fmt, nbr, counter);
@@ -54,13 +56,10 @@ static int	_compute_number_of_digits(int nbr)
 	return (i);
 }
 
-static void	_compile_format(t_ftpf_fmt *fmt, int nbr)
+static void	_compile_format(t_ftpf_fmt *fmt, int nbr, int length)
 {
-	int	length;
-	
 	if (fmt->flag.alternate_form)
 		fmt->flag.alternate_form = 0;
-	length = _compute_number_of_digits(nbr);
 	if (fmt->precision > length)
 	{
 		fmt->precision -= length;
@@ -79,7 +78,7 @@ static void	_compile_format(t_ftpf_fmt *fmt, int nbr)
 		fmt->field_width = -1;
 	if (nbr < 0 || fmt->flag.force_sign || fmt->flag.space_b4_int)
 		fmt->field_width--;
-	if (fmt->flag.zero_pad && fmt->precision == -1  && !fmt->flag.left_justify)
+	if (fmt->flag.zero_pad && fmt->precision == -1 && !fmt->flag.left_justify)
 	{
 		fmt->precision = fmt->field_width;
 		fmt->field_width = -1;

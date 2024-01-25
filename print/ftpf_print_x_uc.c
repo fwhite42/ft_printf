@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 12:32:05 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/25 13:50:21 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	_compute_number_of_digits(unsigned int nbr);
 
-static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr);
+static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length);
 
 static void	_write_sign(t_ftpf_fmt *fmt, int *counter, unsigned int nbr);
 
@@ -25,10 +25,12 @@ static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter);
 
 void	ftpf_print_x_uc(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
-	int		nbr;
+	int	nbr;
+	int	length;
 
 	nbr = va_arg(args, unsigned int);
-	_compile_format(fmt, nbr);
+	length = _compute_number_of_digits(nbr);
+	_compile_format(fmt, nbr, length);
 	if (fmt->field_width > 0 && !fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
 	_write_sign(fmt, counter, nbr);
@@ -54,13 +56,10 @@ static int	_compute_number_of_digits(unsigned int nbr)
 	return (i);
 }
 
-static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr)
+static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length)
 {
-	int	length;
-	
 	if (fmt->flag.force_sign)
 		fmt->flag.force_sign = 0;
-	length = _compute_number_of_digits(nbr);
 	if (fmt->precision > length)
 	{
 		fmt->precision -= length;
@@ -79,7 +78,7 @@ static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr)
 		fmt->field_width -= length;
 	else
 		fmt->field_width = -1;
-	if (fmt->flag.zero_pad && fmt->precision == -1  && !fmt->flag.left_justify)
+	if (fmt->flag.zero_pad && fmt->precision == -1 && !fmt->flag.left_justify)
 	{
 		fmt->precision = fmt->field_width;
 		fmt->field_width = -1;

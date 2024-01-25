@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/24 10:53:23 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 12:32:01 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/25 13:26:22 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,8 @@ static inline void	_ft_vprintf(const char *src, va_list args, int *counter)
 			(src)++;
 			_reset_format(&format);
 			ftpf_parse_fmt(&format, &src);
-//			printf("force sign\t% i\n", format.flag.force_sign);
-//			printf("zero pad\t% i\n", format.flag.zero_pad);
-//			printf("space b4 int\t% i\n", format.flag.space_b4_int);
-//			printf("alternate form\t% i\n", format.flag.alternate_form);
-//			printf("left justify\t% i\n", format.flag.left_justify);
-//			printf("precision\t% i\n", format.precision);
-//			printf("field width\t% i\n", format.field_width);
-//			printf("conversion\t %c\n", format.conversion);
-			//if (format.conversion != '%')
-			//{
-				print = ftpf_load_printer(format.conversion);
-				print(&format, args, counter);
-//				printf("\n");
-//				printf("force sign\t% i\n", format.flag.force_sign);
-//				printf("zero pad\t% i\n", format.flag.zero_pad);
-//				printf("space b4 int\t% i\n", format.flag.space_b4_int);
-//				printf("alternate form\t% i\n", format.flag.alternate_form);
-//				printf("left justify\t% i\n", format.flag.left_justify);
-//				printf("precision\t% i\n", format.precision);
-//				printf("field width\t% i\n", format.field_width);
-//				printf("conversion\t %c\n", format.conversion);
-			//}
-			//else
-				//ftpf_write_one(counter, format.conversion);
+			print = ftpf_load_printer(format.conversion);
+			print(&format, args, counter);
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:56:30 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/24 18:32:49 by fcandia          ###   ########.fr       */
+/*   Updated: 2024/01/25 13:33:06 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static inline int	_precompute_length(t_ftpf_fmt *fmt, char *str)
 {
-	int len;
+	int	len;
 
 	if (str == NULL)
 		len = 6;
@@ -26,14 +26,14 @@ static inline int	_precompute_length(t_ftpf_fmt *fmt, char *str)
 			len++;
 	}
 	if (fmt->precision > -1 && len > fmt->precision)
-		return fmt->precision;
+		return (fmt->precision);
 	return (len);
 }
 
-static inline void _compile_format(t_ftpf_fmt *fmt, char *str, char *pad)
+static inline void	_compile_format(t_ftpf_fmt *fmt, char *str, char *pad)
 {
-	int length;
-	
+	int	length;
+
 	length = _precompute_length(fmt, str);
 	*pad = ' ';
 	if (fmt->flag.left_justify)

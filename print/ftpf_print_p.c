@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:17:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/24 22:32:49 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/25 13:36:05 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static int	_compute_length(uintptr_t nbr)
 		nbr = nbr / 16;
 		++i;
 	}
-	return i;
+	return (i);
 }
 
-static void _compile_flags(t_ftpf_fmt *fmt, uintptr_t nbr)
+static void	_compile_flags(t_ftpf_fmt *fmt, uintptr_t nbr)
 {
-	int length;
-	
+	int	length;
+
 	length = _compute_length(nbr);
 	fmt->precision -= length;
 	if (fmt->precision > 0)
@@ -50,19 +50,18 @@ static void _compile_flags(t_ftpf_fmt *fmt, uintptr_t nbr)
 	fmt->field_width -= (2 + length);
 }
 
-
 void	ftpf_print_p(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	uintptr_t	ptr;
 
 	ptr = va_arg(args, uintptr_t);
 	_compile_flags(fmt, ptr);
-	if (fmt->field_width > 0 && !fmt->flag.left_justify) 
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
 	ftpf_write_string(counter, "0x", 2);
 	if (fmt->precision > 0)
 		ftpf_write_many(counter, '0', fmt->precision);
 	_print_pointer(ptr, counter);
-	if (fmt->field_width > 0 && fmt->flag.left_justify) 
+	if (fmt->field_width > 0 && fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
 }

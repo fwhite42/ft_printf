@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                      _ /'-----'\_          */
 /*   Created: 2024/01/20 15:37:57 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/24 15:14:26 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/25 13:26:51 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	ftpf_parse_fmt(t_ftpf_fmt *fmt, const char **src)
 		return (1);
 	}
 	else
-		return ftpf_parse_fmt(fmt, src);
+		return (ftpf_parse_fmt(fmt, src));
 }
