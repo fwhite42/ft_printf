@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 00:01:24 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/23 11:52:55 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/26 01:17:39 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ bool	ftpf_is_conversion_specifier(char x);
 // 		Utils to write into the standard input
 //		Utils to consume data from a string:
 //=============================================================================
-int		ftpf_write_one(int *counter, char c);
-int		ftpf_write_many(int *counter, char c, int reps);
-int		ftpf_write_string(int *counter, char *str, int limit);
-bool	ftpf_read_one(char *destination, const char **src);
-bool	ftpf_read_many(char *destination, const char **src, int reps);
+void	ftpf_write_one(int *counter, char c);
+void	ftpf_write_many(int *counter, char c, int reps);
+void	ftpf_write_string(int *counter, char *str, int limit);
+void	ftpf_read_one(char *destination, const char **src);
 
 //=============================================================================
 //	> File

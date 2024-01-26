@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:17:11 by fwhite42          #+#    #+#             */
-/*   Updated: 2024/01/25 13:36:05 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/26 03:58:42 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,24 @@ void	ftpf_print_p(t_ftpf_fmt *fmt, va_list args, int *counter)
 {
 	uintptr_t	ptr;
 
+	if (*counter == -1)
+		return ;
 	ptr = va_arg(args, uintptr_t);
 	_compile_flags(fmt, ptr);
 	if (fmt->field_width > 0 && !fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
+	if (*counter == -1)
+		return ;
 	ftpf_write_string(counter, "0x", 2);
+	if (*counter == -1)
+		return ;
 	if (fmt->precision > 0)
 		ftpf_write_many(counter, '0', fmt->precision);
+	if (*counter == -1)
+		return ;
 	_print_pointer(ptr, counter);
 	if (fmt->field_width > 0 && fmt->flag.left_justify)
 		ftpf_write_many(counter, ' ', fmt->field_width);
+	if (*counter == -1)
+		return ;
 }

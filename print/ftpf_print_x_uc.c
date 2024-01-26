@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 13:50:21 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/26 04:37:08 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,11 @@ static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length)
 static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter)
 {
 	if (nbr > 0)
+	{
 		ftpf_write_number_base(HEX_BASE_UC, nbr, counter);
+		if (*counter == -1)
+			return ;
+	}
 	else if (!fmt->flag.force_sign)
 		ftpf_write_one(counter, '0');
 }

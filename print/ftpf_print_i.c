@@ -6,7 +6,7 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/25 13:31:32 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/01/26 04:36:23 by fcandia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,21 +87,19 @@ static void	_compile_format(t_ftpf_fmt *fmt, int nbr, int length)
 
 static void	_write_number(t_ftpf_fmt *fmt, int nbr, int *counter)
 {
-	int		a;
-	int		b;
+	int		quotient;
+	int		digit;
 
 	if (nbr > 0)
-	{
 		ftpf_write_number_base(NBR_BASE, (unsigned int) nbr, counter);
-	}
 	else if (nbr < 0)
 	{
 		if (nbr / 10)
 		{
-			a = (unsigned int) -(nbr / 10);
-			b = (unsigned int) -(nbr + 10) % 10;
-			ftpf_write_number_base(NBR_BASE, a, counter);
-			ftpf_write_number_base(NBR_BASE, b, counter);
+			quotient = (unsigned int) -(nbr / 10);
+			digit = (unsigned int) -(nbr + 10) % 10;
+			ftpf_write_number_base(NBR_BASE, quotient, counter);
+			ftpf_write_number_base(NBR_BASE, digit, counter);
 		}
 		else
 			ftpf_write_number_base(NBR_BASE, (unsigned int) -nbr, counter);
