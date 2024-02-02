@@ -6,7 +6,7 @@
 #    By: fwhite42 <FUCK THE NORM>                          (  o  )             #
 #                                                        _/'-----'\_           #
 #    Created: 2024/01/21 17:24:42 by fwhite42          \\ \\     // //         #
-#    Updated: 2024/01/25 12:32:00 by fcandia          ###   ########.fr        #
+#    Updated: 2024/02/02 16:02:34 by fwhite42           _)/_\---/_\(_          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,4 +165,4 @@ bonus: $(NAME)
 % : tests/%.c $(NAME)
 	gcc -L. -lftprintf -Iinclude -Imain tests/$*.c -o test.exe
 
-.PHONY	: clean fclean
+.PHONY	: clean fclean all re bonus
