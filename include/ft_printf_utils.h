@@ -6,15 +6,13 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/26 18:06:25 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/26 18:06:30 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:13 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_UTILS_H
 # define FT_PRINTF_UTILS_H
-# include<stdlib.h>
 # include<stdbool.h>
-# include<unistd.h>
 
 bool	ftpf_is_escape_char(char x);
 bool	ftpf_is_digit(char x);

@@ -1,43 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ftpf_print_x_uc.c                                       4 2              */
+/*   ftpf_print_x_lc.c                                       4 2              */
 /*                                                        (@)-=-(@)           */
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/02 16:03:22 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:15 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_printers.h"
 #include"ft_printf_constants.h"
-
-static int	_compute_number_of_digits(unsigned int nbr);
-
-static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length);
-
-static void	_write_sign(t_ftpf_fmt *fmt, int *counter, unsigned int nbr);
-
-static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter);
-
-void	ftpf_print_x_uc(t_ftpf_fmt *fmt, va_list args, int *counter)
-{
-	int	nbr;
-	int	length;
-
-	nbr = va_arg(args, unsigned int);
-	length = _compute_number_of_digits(nbr);
-	_compile_format(fmt, nbr, length);
-	if (fmt->field_width > 0 && !fmt->flag.left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width);
-	_write_sign(fmt, counter, nbr);
-	if (fmt->precision > 0)
-		ftpf_write_many(counter, '0', fmt->precision);
-	_write_number(fmt, nbr, counter);
-	if (fmt->field_width > 0 && fmt->flag.left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width);
-}
+#include"ft_printf_structures.h"
+#include"ft_printf_utils.h"
+#include<stdarg.h>
 
 static int	_compute_number_of_digits(unsigned int nbr)
 {
@@ -86,17 +62,31 @@ static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length)
 static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter)
 {
 	if (nbr > 0)
-	{
-		ftpf_write_number_base(HEX_BASE_UC, nbr, counter);
-		if (*counter == -1)
-			return ;
-	}
+		ftpf_write_number_base(HEX_BASE_LC, nbr, counter);
 	else if (!fmt->flag.force_sign)
 		ftpf_write_one(counter, '0');
 }
 
 static void	_write_sign(t_ftpf_fmt *fmt, int *counter, unsigned int nbr)
 {
-	if (fmt->flag.alternate_form && nbr != 0)
-		ftpf_write_string(counter, "0X", 2);
+	if (fmt->flag.alternate_form && nbr)
+		ftpf_write_string(counter, "0x", 2);
+}
+
+void	ftpf_print_x(t_ftpf_fmt *fmt, va_list args, int *counter)
+{
+	int	nbr;
+	int	length;
+
+	nbr = va_arg(args, unsigned int);
+	length = _compute_number_of_digits(nbr);
+	_compile_format(fmt, nbr, length);
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+	_write_sign(fmt, counter, nbr);
+	if (fmt->precision > 0)
+		ftpf_write_many(counter, '0', fmt->precision);
+	_write_number(fmt, nbr, counter);
+	if (fmt->field_width > 0 && fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
 }

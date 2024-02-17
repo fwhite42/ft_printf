@@ -6,11 +6,14 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/26 17:58:13 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/02 16:03:26 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:24 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include"ft_printf_printers.h"
+#include"ft_printf_constants.h"
+#include"ft_printf_utils.h"
+#include"ft_printf_structures.h"
+#include<stdint.h>
+#include<stdarg.h>
 
 static void	_print_pointer(uintptr_t nbr, int *counter)
 {

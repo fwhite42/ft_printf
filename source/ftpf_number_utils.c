@@ -6,10 +6,11 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/26 18:04:35 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/26 18:04:51 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:09 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include<stddef.h>
 #include"ft_printf_utils.h"
 
 static int	_ftpf_write_number_base(char *b, size_t bl, unsigned int n, int *i)

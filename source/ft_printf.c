@@ -6,13 +6,14 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/24 10:53:23 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/26 17:59:20 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:18 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
 #include"ft_printf_parsers.h"
 #include"ft_printf_printers.h"
+#include"ft_printf_utils.h"
+#include<stddef.h>
 
 static inline void	ftpf_reset_format(t_ftpf_fmt *format)
 {

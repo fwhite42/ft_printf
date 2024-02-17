@@ -6,17 +6,14 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 11:24:07 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/26 18:07:26 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 05:35:20 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_PRINTERS_H
 # define FT_PRINTF_PRINTERS_H
 # include<stdarg.h>
-# include<stdint.h>
 # include"ft_printf_structures.h"
-# include"ft_printf_constants.h"
-# include"ft_printf_utils.h"
 
 typedef void(*t_ftpf_printer)(t_ftpf_fmt *fmt, va_list arg, int *counter);
 

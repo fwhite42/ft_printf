@@ -6,11 +6,12 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/22 10:03:39 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/01/26 18:05:20 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 06:01:07 by fwhite42           _)/_\---/_\(_         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_utils.h"
+#include<stddef.h>
+#include<unistd.h>
 
 void	ftpf_write_one(int *counter, char c)
 {
@@ -32,12 +33,4 @@ void	ftpf_write_string(int *counter, char *c, int limit)
 {
 	while (*c && limit-- && *counter != -1)
 		ftpf_write_one(counter, *(c++));
-}
-
-void	ftpf_read_one(char *destination, const char **source)
-{
-	if (destination == NULL || source == NULL || *source == NULL)
-		return ;
-	*destination = **source;
-	(*source)++;
 }
