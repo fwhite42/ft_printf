@@ -6,38 +6,13 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/17 06:01:12 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 11:18:54 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_constants.h"
-#include"ft_printf_structures.h"
-#include"ft_printf_utils.h"
 #include<stdarg.h>
 #include<limits.h>
-
-static int	_compute_number_of_digits(unsigned int nbr);
-
-static void	_compile_format(t_ftpf_fmt *fmt, unsigned int nbr, int length);
-
-static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter);
-
-void	ftpf_print_u(t_ftpf_fmt *fmt, va_list args, int *counter)
-{
-	int	nbr;
-	int	length;
-
-	nbr = va_arg(args, unsigned int);
-	length = _compute_number_of_digits(nbr);
-	_compile_format(fmt, nbr, length);
-	if (fmt->field_width > 0 && !fmt->flag.left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width);
-	if (fmt->precision > 0)
-		ftpf_write_many(counter, '0', fmt->precision);
-	_write_number(fmt, nbr, counter);
-	if (fmt->field_width > 0 && fmt->flag.left_justify)
-		ftpf_write_many(counter, ' ', fmt->field_width);
-}
+#include"libftprintf.h"
 
 static int	_compute_number_of_digits(unsigned int nbr)
 {
@@ -87,4 +62,21 @@ static void	_write_number(t_ftpf_fmt *fmt, unsigned int nbr, int *counter)
 		ftpf_write_number_base(NBR_BASE, nbr, counter);
 	else if (!fmt->flag.force_sign)
 		ftpf_write_one(counter, '0');
+}
+
+void	ftpf_print_u(t_ftpf_fmt *fmt, va_list args, int *counter)
+{
+	int	nbr;
+	int	length;
+
+	nbr = va_arg(args, unsigned int);
+	length = _compute_number_of_digits(nbr);
+	_compile_format(fmt, nbr, length);
+	if (fmt->field_width > 0 && !fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
+	if (fmt->precision > 0)
+		ftpf_write_many(counter, '0', fmt->precision);
+	_write_number(fmt, nbr, counter);
+	if (fmt->field_width > 0 && fmt->flag.left_justify)
+		ftpf_write_many(counter, ' ', fmt->field_width);
 }

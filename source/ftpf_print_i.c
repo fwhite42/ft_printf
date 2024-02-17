@@ -6,14 +6,12 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 17:41:02 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/17 06:01:23 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 11:18:54 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_constants.h"
-#include"ft_printf_structures.h"
-#include"ft_printf_utils.h"
 #include<stdarg.h>
+#include"libftprintf.h"
 
 static int	_compute_number_of_digits(int nbr);
 

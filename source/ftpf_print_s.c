@@ -6,14 +6,13 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/26 17:58:32 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/17 06:01:11 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 11:18:54 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdarg.h>
 #include<stddef.h>
-#include"ft_printf_utils.h"
-#include"ft_printf_structures.h"
+#include"libftprintf.h"
 
 static inline int	_precompute_length(t_ftpf_fmt *fmt, char *str)
 {

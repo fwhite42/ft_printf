@@ -6,12 +6,12 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/19 11:37:51 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/17 05:37:24 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 11:18:53 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_printers.h"
 #include <stddef.h>
+#include"libftprintf.h"
 
 t_ftpf_printer	ftpf_load_printer(char conversion_specifier)
 {

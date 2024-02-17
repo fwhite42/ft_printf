@@ -6,26 +6,12 @@
 /*   By: fwhite42 <FUCK THE NORM>                          (  o  )            */
 /*                                                       _/'-----'\_          */
 /*   Created: 2024/01/24 10:53:23 by fwhite42          \\ \\     // //        */
-/*   Updated: 2024/02/17 06:01:18 by fwhite42           _)/_\---/_\(_         */
+/*   Updated: 2024/02/17 11:18:53 by fwhite42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_parsers.h"
-#include"ft_printf_printers.h"
-#include"ft_printf_utils.h"
 #include<stddef.h>
-
-static inline void	ftpf_reset_format(t_ftpf_fmt *format)
-{
-	format->flag.alternate_form = 0;
-	format->flag.left_justify = 0;
-	format->flag.force_sign = 0;
-	format->flag.space_b4_int = 0;
-	format->flag.zero_pad = 0;
-	format->conversion = 0;
-	format->field_width = -1;
-	format->precision = -1;
-}
+#include"libftprintf.h"
 
 int	ft_vprintf(const char *src, va_list args)
 {
